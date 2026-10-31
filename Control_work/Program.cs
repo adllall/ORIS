@@ -40,7 +40,6 @@ while (true)
         {
             html = "<h1>Расписание занятий</h1>";
 
-            // 1. Сначала — форма создания занятия
             html += """
                     <h2>Запланировать занятие</h2>
                     <form method="post" action="/lessons/create">
@@ -50,7 +49,6 @@ while (true)
                     </form>
                     """;
 
-            // 2. Фильтр и список занятий
             html += """
                     <h2>Список занятий</h2>
                     <form method="get" action="/lessons">
@@ -66,8 +64,7 @@ while (true)
 
                 html += $"<p>{lesson.Id}. {subject} — {lesson.Room} ({status})</p>";
             }
-
-            // 3. В конце — дополнительное задание
+            
             html += "<h2>Запланированные занятия по аудиториям</h2>";
 
             foreach (var item in service.GetScheduledCountByRoom())
@@ -198,7 +195,7 @@ while (true)
     response.Close();
 }
 
-static Dictionary<string, string> ParseForm(string body)
+static Dictionary<string, string> хParseForm(string body)
 {
     var result = new Dictionary<string, string>();
     if (string.IsNullOrEmpty(body)) return result;
